@@ -1,1 +1,0 @@
-# maven-plugin-tools-scala
