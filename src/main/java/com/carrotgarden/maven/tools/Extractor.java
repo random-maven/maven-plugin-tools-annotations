@@ -10,6 +10,7 @@ import java.net.URLClassLoader;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.stream.Stream;
 
 import org.apache.maven.artifact.Artifact;
@@ -38,7 +39,7 @@ public class Extractor extends JavaAnnotationsMojoDescriptorExtractor implements
 	 * Code reuse: call private parent method.
 	 */
 	@SuppressWarnings("unchecked")
-	public Map<String, MojoAnnotatedClass> scanAnnotations(PluginToolsRequest request) throws ExtractionException {
+	public Map<String, MojoAnnotatedClass> superScanAnnotations(PluginToolsRequest request) throws ExtractionException {
 		try {
 			Method method = this.getClass().getSuperclass() //
 					.getDeclaredMethod("scanAnnotations", new Class[] { PluginToolsRequest.class });
@@ -53,7 +54,7 @@ public class Extractor extends JavaAnnotationsMojoDescriptorExtractor implements
 	 * Code reuse: call private parent method.
 	 */
 	@SuppressWarnings("unchecked")
-	public List<MojoDescriptor> toMojoDescriptors(Map<String, MojoAnnotatedClass> mojoAnnotatedClasses,
+	public List<MojoDescriptor> superToMojoDescriptors(Map<String, MojoAnnotatedClass> mojoAnnotatedClasses,
 			PluginDescriptor pluginDescriptor) throws InvalidParameterException {
 		try {
 			Method method = this.getClass().getSuperclass() //
@@ -239,8 +240,9 @@ public class Extractor extends JavaAnnotationsMojoDescriptorExtractor implements
 		try {
 			getLogger().info(A.extractor + ":");
 			final ClassLoader loader = projectClasLoader(request);
-			Map<String, MojoAnnotatedClass> mojoAnnotatedClasses = scanAnnotations(request);
-			for (MojoAnnotatedClass annoClass : mojoAnnotatedClasses.values()) {
+			Map<String, MojoAnnotatedClass> mojoAnnotatedClasses = superScanAnnotations(request);
+			TreeMap<String, MojoAnnotatedClass> sortedAnnotatedClasses = new TreeMap<>(mojoAnnotatedClasses);
+			for (MojoAnnotatedClass annoClass : sortedAnnotatedClasses.values()) {
 				if (annoClass.getMojo() == null) {
 					continue; // Non-mojo class.
 				}
@@ -249,7 +251,7 @@ public class Extractor extends JavaAnnotationsMojoDescriptorExtractor implements
 				updateMojoDescription(klaz, annoClass);
 				updateParameterDescription(klaz, annoClass);
 			}
-			return toMojoDescriptors(mojoAnnotatedClasses, request.getPluginDescriptor());
+			return superToMojoDescriptors(mojoAnnotatedClasses, request.getPluginDescriptor());
 		} catch (Throwable e) {
 			throw new ExtractionException(A.extractor, e);
 		}

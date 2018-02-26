@@ -2,10 +2,10 @@ language: java
 dist: trusty
 jdk:
 - oraclejdk8
+- oraclejdk9
 cache:
   directories:
   - "$HOME/.m2"
-  - "./test-repo"
 env:
   global:
   - secure: pSe/4X4KI3vXNMs9dB28Ezf2iouU7QXQeXUcF5lhsyguhrYkaohsStBFkdRN6wxcmaR8wW5fCejJv5HBc8p6vV8GcjXLOPBCIScqY+556wSMwE+BXnpEj5/eNlgLBnWZFAh0lqnM9NdkdWjtfN3EmOOuMWRQozsoA7kDpIMmJql9Oif9Pj8Vf04OdjwFBR/9nEp/fwl7s9+z2CY5Pq+QxnNEnYk0dJDtQmiOiVEnta1ExvFg+iKB/N18Ohur6dzqKM0GBrIpRxYphdsAYpz+yQvXg3u4BO7MlP49Y5zhjmEccevQ+jeTHllpdTPvXv+IQjmWmFNEAWJWaB9iVNYGcPwwrinxAHzYeau9//0HISAUnP1qbrx958a2XZ1qgyeB2vGnlL39El9FW9hh4UGsVXA/NWLkDVk3WZlLUPAbidLiv67d33kdQe9ZqFPf4gT1LctM9McJQqE7+PoXv+Wpjf/h2wSph17PF9SBZD+ZzqroPpNmV2jPnkDf8XnVJeyZN4P22zGWyb0BNn+n9WS05mjTMxgXZRNmUJK6yTMmkCb77Kq8jMuMZtTkSSQlVgvm3c9rxEalGCw6FoDwRGGsdiipCXKr2OTVR6F+n1dYVedWUku6mm96GFM9JHK6h1iXRzxUpqTEfSjDquSnuBjYMet3NtouEv4yu40rp3/t0J4=
@@ -17,3 +17,4 @@ script:
 - "/bin/cp -f ./.mvn/ci/toolchains.xml $HOME/.m2/toolchains.xml"
 - "./.mvn/verify.sh || exit 1"
 - "./.mvn/release-bintray.sh || exit 1"
+- "./.mvn/wipe-repo.sh || exit 1"

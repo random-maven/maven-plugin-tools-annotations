@@ -15,9 +15,11 @@
     <version>${revision}</version>
     <packaging>jar</packaging>
 
-    <url>https://github.com/random-maven/maven-plugin-tools-annotations</url>
+    <url>https://github.com/random-maven/scalor-maven-plugin</url>
     <scm>
         <url>https://github.com/random-maven/maven-plugin-tools-annotations</url>
+        <connection>scm:git:git@github.com:random-maven/maven-plugin-tools-annotations.git</connection>
+        <developerConnection>scm:git:git@github.com:random-maven/maven-plugin-tools-annotations.git</developerConnection>
     </scm>
 
     <licenses>
@@ -30,7 +32,7 @@
     <description>Custom Maven Plugin Annotations Extractor.</description>
 
     <properties>
-        <release.epoch>1.0</release.epoch>
+        <release.epoch>1.1</release.epoch>
         <version.maven>[3.5,3.6)</version.maven>
         <bintray.subject>random-maven</bintray.subject>
         <bintray.repository>maven</bintray.repository>
@@ -82,6 +84,13 @@
             <version>${version.maven}</version>
         </dependency>
 
+        <!-- Java 9 support. -->
+        <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm</artifactId>
+            <version>6.0</version>
+        </dependency>
+
         <!-- Testing. -->
 
         <dependency>
@@ -89,7 +98,6 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
-
 
     </dependencies>
 
@@ -117,9 +125,14 @@
                 <configuration>
                     <showErrors>true</showErrors>
                     <streamLogs>true</streamLogs>
-                    <localRepositoryPath>${project.basedir}/test-repo</localRepositoryPath>
+                    <!-- <localRepositoryPath>${project.basedir}/test-repo</localRepositoryPath> -->
                     <!-- <pomIncludes>test-any/pom.xml</pomIncludes> -->
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
             </plugin>
 
         </plugins>
