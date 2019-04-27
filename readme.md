@@ -6,8 +6,6 @@ provide maven plugin descriptor for maven plugins written in Scala.
 
 [![Project License][licence_icon]][licence_link]
 [![Travis Status][travis_icon]][travis_link]
-[![Project Files][tokei_files_icon]][tokei_basic_link]
-[![Project Lines][tokei_lines_icon]][tokei_basic_link]
 [![Lines of Code][tokei_basic_icon]][tokei_basic_link]
 
 | Install  | Production Release | Development Release |
@@ -61,8 +59,6 @@ cd maven-plugin-tools-annotations
 [travis_icon]: https://travis-ci.org/random-maven/maven-plugin-tools-annotations.svg
 [travis_link]: https://travis-ci.org/random-maven/maven-plugin-tools-annotations/builds
 
-[tokei_files_icon]: https://tokei.rs/b1/github/random-maven/maven-plugin-tools-annotations?category=files 
-[tokei_lines_icon]: https://tokei.rs/b1/github/random-maven/maven-plugin-tools-annotations?category=lines 
 [tokei_basic_icon]: https://tokei.rs/b1/github/random-maven/maven-plugin-tools-annotations
 [tokei_basic_link]: https://github.com/random-maven/maven-plugin-tools-annotations 
 

@@ -1,3 +1,7 @@
+### 1.2
+
+#### Improvements
+* Java 11 support
 
 ### 1.1
 

@@ -32,7 +32,7 @@
     <description>Custom Maven Plugin Annotations Extractor.</description>
 
     <properties>
-        <release.epoch>1.1</release.epoch>
+        <release.epoch>1.2</release.epoch>
         <version.maven>[3.5,3.6)</version.maven>
         <bintray.subject>random-maven</bintray.subject>
         <bintray.repository>maven</bintray.repository>
@@ -84,11 +84,11 @@
             <version>${version.maven}</version>
         </dependency>
 
-        <!-- Java 9 support. -->
+        <!-- Java 11 support. -->
         <dependency>
             <groupId>org.ow2.asm</groupId>
             <artifactId>asm</artifactId>
-            <version>6.0</version>
+            <version>7.1</version>
         </dependency>
 
         <!-- Testing. -->
